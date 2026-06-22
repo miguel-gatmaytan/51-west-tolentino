@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>51 West Tolentino Inn | Tagaytay City — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+:root{
+  --pine:#2c3e36;--pine-light:#3e5a4d;--pine-dark:#1f2e28;
+  --cream:#f7f2e9;--fog:#efe7d6;
+  --amber:#de9b41;--amber-dark:#c27f2e;
+  --sage:#8fa89c;--sage-light:#c3d2c8;
+  --espresso:#36281f;--shadow:rgba(44,62,54,.16);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:var(--cream);color:var(--espresso);font-family:'Work Sans',-apple-system,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+ul,ol{margin:0;padding:0}li{list-style:none}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.15;margin:0;color:var(--pine)}
+h1{font-size:clamp(2.2rem,5vw,3.6rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.7rem,3.5vw,2.5rem);letter-spacing:-.01em}
+h3{font-size:clamp(1.15rem,2vw,1.5rem)}
+p{margin:0}
+.container{width:100%;max-width:1200px;margin-inline:auto;padding-inline:1.5rem}
+.site{display:flex;flex-direction:column;min-height:100vh}
+.site__main{flex:1}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:.9rem 1.6rem;border-radius:6px;border:1.5px solid transparent;cursor:pointer;transition:transform .18s,background .18s,color .18s,border-color .18s}
+.btn:hover{transform:translateY(-2px)}
+.btn--sm{padding:.65rem 1.25rem;font-size:.7rem}
+.btn--amber{background:var(--amber);border-color:var(--amber);color:var(--pine-dark)}
+.btn--amber:hover{background:var(--amber-dark);border-color:var(--amber-dark)}
+.btn--outline-cream{background:transparent;border-color:rgba(247,242,233,.45);color:var(--cream)}
+.btn--outline-cream:hover{background:rgba(247,242,233,.12);border-color:var(--cream)}
+.btn--outline-pine{background:transparent;border-color:rgba(44,62,54,.3);color:var(--pine)}
+.btn--outline-pine:hover{background:var(--pine);border-color:var(--pine);color:var(--cream)}
+.label{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase}
+.eyebrow{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem}
+.link-arrow{display:inline-flex;align-items:center;gap:.4rem;font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--pine);border-bottom:1.5px solid currentColor;padding-bottom:.2rem}
+.link-arrow svg{width:1rem;height:1rem;transition:transform .18s}
+.link-arrow:hover svg{transform:translateX(3px)}
+/* Sections */
+.section{padding-block:5rem}
+.section--fog{background:var(--fog)}
+.section--pine{background:var(--pine);color:var(--cream)}
+.section--pine h1,.section--pine h2,.section--pine h3,.section--pine h4{color:var(--cream)}
+/* Page header */
+.page-header{position:relative;background:var(--pine);color:var(--cream);padding:4rem 0 5rem;overflow:hidden}
+.page-header h1{color:var(--cream)}
+.page-header__inner{position:relative;z-index:1;max-width:46rem}
+.page-header__ridge{position:absolute;inset:auto 0 0 0;width:100%;height:55%;z-index:0}
+/* Ridge SVG */
+.ridge{display:block;width:100%;height:100%}
+.ridge--on-pine .r1{fill:var(--pine-dark)}
+.ridge--on-pine .r2{fill:rgba(143,168,156,.35)}
+.ridge--on-pine .r3{fill:rgba(247,242,233,.16)}
+.ridge--on-pine .rv{fill:rgba(222,155,65,.6)}
+.ridge--on-pine .rl{fill:rgba(195,210,200,.22)}
+.ridge--on-cream .r1{fill:var(--sage-light)}
+.ridge--on-cream .r2{fill:var(--pine-light)}
+.ridge--on-cream .r3{fill:var(--pine)}
+.ridge--on-cream .rv{fill:var(--amber)}
+.ridge--on-cream .rl{fill:var(--sage-light)}
+/* Photo placeholder */
+.photo-ph{position:relative;overflow:hidden;border-radius:12px;background:linear-gradient(155deg,var(--pine) 0%,var(--pine-light) 100%);display:flex;align-items:flex-end;justify-content:center}
+.photo-ph--wide{aspect-ratio:4/3}
+.photo-ph--tall{aspect-ratio:3/4}
+.photo-ph--banner{aspect-ratio:16/7}
+.photo-ph__ridge{position:absolute;inset:auto 0 0 0;width:100%;height:65%}
+.photo-ph__lbl{position:relative;z-index:1;margin:1.5rem;padding:.45rem .9rem;background:rgba(31,46,40,.55);color:var(--cream);font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;text-align:center}
+/* Navbar */
+.navbar{position:sticky;top:0;z-index:100;background:var(--pine);color:var(--cream);transition:box-shadow .3s,background .3s}
+.navbar--scrolled{background:var(--pine-dark);box-shadow:0 8px 24px var(--shadow)}
+.navbar__inner{display:flex;align-items:center;justify-content:space-between;padding-block:.85rem;gap:1.5rem}
+.navbar__brand{display:flex;align-items:center;gap:.6rem;flex-shrink:0}
+.navbar__mark{display:block;width:2.1rem;height:2.1rem}
+.navbar__name{font-family:'Fraunces',serif;font-weight:700;font-size:1.25rem;letter-spacing:.02em}
+.navbar__sub{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-light)}
+.navbar__nav{display:flex;align-items:center;gap:2.5rem}
+.navbar__nav ul{display:flex;align-items:center;gap:1.5rem}
+.navbar__nav a:not(.btn){font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;border-bottom:1.5px solid transparent;padding-bottom:.2rem;transition:color .18s,border-color .18s}
+.navbar__nav a:not(.btn):hover,.navbar__nav a.active{color:var(--amber);border-color:var(--amber)}
+.navbar__toggle{display:none;background:none;border:none;color:var(--cream);padding:.4rem;cursor:pointer}
+.navbar__toggle svg{width:1.6rem;height:1.6rem}
+@media(max-width:1023px){
+  .navbar__nav{position:absolute;inset-inline:0;top:100%;flex-direction:column;align-items:flex-start;gap:1rem;background:var(--pine-dark);padding:1.5rem 1.5rem 2.5rem;border-top:1px solid rgba(247,242,233,.1);transform:translateY(-8px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .3s,transform .3s}
+  .navbar__nav--open{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0)}
+  .navbar__nav ul{flex-direction:column;align-items:flex-start;width:100%;gap:1rem}
+  .navbar__toggle{display:inline-flex}
+}
+/* Footer */
+.footer__divider{background:var(--cream);height:80px;line-height:0}
+.footer__main{background:var(--pine);color:var(--sage-light);padding-top:2.5rem}
+.footer__grid{display:grid;gap:3rem 2.5rem;grid-template-columns:1.4fr 1fr 1fr 1fr;padding-bottom:3rem}
+@media(max-width:767px){.footer__grid{grid-template-columns:1fr}}
+.footer__name{font-family:'Fraunces',serif;font-weight:600;font-size:1.4rem;color:var(--cream);margin-bottom:.5rem}
+.footer__hdg{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:1.5rem}
+.footer__links{display:flex;flex-direction:column;gap:.65rem}
+.footer__links a:hover{color:var(--cream)}
+.footer__contact{display:flex;flex-direction:column;gap:1rem}
+.footer__contact li{display:flex;align-items:flex-start;gap:.6rem}
+.footer__contact a:hover{color:var(--cream)}
+.footer__icon{width:1.1rem;height:1.1rem;flex-shrink:0;margin-top:.15rem;color:var(--amber)}
+.footer__bottom{display:flex;justify-content:space-between;border-top:1px solid rgba(247,242,233,.12);padding-block:1.5rem;font-size:.8rem}
+@media(max-width:767px){.footer__bottom{flex-direction:column;gap:.4rem}}
+/* Hero */
+.hero{position:relative;background:var(--pine);color:var(--cream);min-height:92vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero__bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 65% 30%,rgba(222,155,65,.18) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 20% 60%,rgba(62,90,77,.5) 0%,transparent 70%),var(--pine)}
+.hero__ridge{position:absolute;inset:auto 0 0 0;width:100%;height:55%;z-index:1}
+.hero__content{position:relative;z-index:2;max-width:52rem;padding-bottom:5rem;padding-top:5rem}
+.hero__title{color:var(--cream);margin-bottom:1.5rem}
+.hero__tagline{font-size:clamp(1rem,2vw,1.2rem);color:var(--sage-light);max-width:36rem;line-height:1.65;margin-bottom:2.5rem}
+.hero__actions{display:flex;flex-wrap:wrap;gap:1rem}
+/* Stats */
+.stats-bar{background:var(--fog);border-bottom:1.5px solid rgba(44,62,54,.1)}
+.stats-inner{display:grid;grid-template-columns:repeat(4,1fr)}
+@media(max-width:767px){.stats-inner{grid-template-columns:repeat(2,1fr)}}
+.stat{padding:1.5rem;border-right:1.5px solid rgba(44,62,54,.1)}
+.stat:last-child{border-right:none}
+.stat__v{font-family:'Fraunces',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:600;color:var(--pine);line-height:1;margin-bottom:.35rem}
+.stat__l{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sage)}
+/* Section heading */
+.sh{margin-bottom:3rem}
+.sh__title{margin-bottom:.75rem}
+.sh__intro{max-width:54rem;font-size:1.05rem;color:var(--pine-light);line-height:1.7}
+.section--pine .sh__intro{color:var(--sage-light)}
+.sh--center{text-align:center}
+.sh--center .sh__intro{margin-inline:auto;max-width:44rem}
+/* Grids */
+.grid-3{display:grid;gap:1.5rem;grid-template-columns:repeat(3,1fr)}
+.grid-2{display:grid;gap:3rem;grid-template-columns:1fr 1fr;align-items:center}
+.grid-5{display:grid;gap:1.5rem;grid-template-columns:repeat(5,1fr)}
+@media(max-width:767px){.grid-3{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}.grid-5{grid-template-columns:repeat(2,1fr)}}
+/* Cards */
+.card{background:var(--cream);border-radius:12px;padding:2.5rem;border:1.5px solid var(--fog);transition:box-shadow .3s,transform .18s}
+.card--fog{background:var(--fog);border-color:transparent}
+.card:hover{box-shadow:0 8px 28px var(--shadow);transform:translateY(-3px)}
+/* Values */
+.val__num{font-family:'Fraunces',serif;font-size:3rem;font-weight:700;color:var(--fog);line-height:1;margin-bottom:1rem}
+.val__t{font-family:'Fraunces',serif;font-size:1.25rem;font-weight:600;color:var(--pine);margin-bottom:.6rem}
+.val__b{color:var(--pine-light);line-height:1.7;font-size:.95rem}
+/* Amenity */
+.am-item{display:flex;align-items:center;gap:.75rem;font-size:.95rem}
+.am-icon{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:2.4rem;height:2.4rem;border-radius:50%;background:var(--fog);color:var(--pine)}
+.am-icon svg{width:1.1rem;height:1.1rem}
+.section--pine .am-icon{background:rgba(247,242,233,.1);color:var(--amber)}
+/* Amenity card (Stay page) */
+.am-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.6rem;padding:1.5rem 1rem;background:var(--fog);border-radius:12px;font-size:.85rem;font-weight:500;color:var(--pine)}
+.am-card svg{width:1.6rem;height:1.6rem;color:var(--amber)}
+/* CTA band */
+.cta-band{background:var(--pine);color:var(--cream);padding-block:4rem;text-align:center}
+.cta-band h2{color:var(--cream);margin-bottom:1rem}
+.cta-band p{color:var(--sage-light);margin-bottom:2.5rem;max-width:36rem;margin-inline:auto}
+.cta-actions{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+/* Room cards */
+.room-card{display:grid;gap:3rem;grid-template-columns:1.1fr 1fr;align-items:start}
+@media(max-width:767px){.room-card{grid-template-columns:1fr}}
+.room-card__badge{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;background:var(--fog);color:var(--pine);padding:.3rem .7rem;border-radius:100px}
+.room-card__name{font-family:'Fraunces',serif;font-size:clamp(1.5rem,2.5vw,2rem);font-weight:600;color:var(--pine);margin:.75rem 0 .75rem}
+.room-card__desc{color:var(--pine-light);line-height:1.75;margin-bottom:1.5rem}
+.room-feats{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2rem}
+.room-feat{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;background:rgba(44,62,54,.08);color:var(--pine);padding:.25rem .7rem;border-radius:100px}
+/* Policies */
+.pol-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(3,1fr)}
+@media(max-width:767px){.pol-grid{grid-template-columns:1fr}}
+.pol__lbl{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:.4rem}
+.pol__val{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--cream);margin-bottom:.35rem}
+.pol__note{font-size:.85rem;color:var(--sage-light)}
+/* Location */
+.loc-cats{display:flex;flex-direction:column;gap:3rem}
+.cat-lbl{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:1.5rem;display:flex;align-items:center;gap:.6rem}
+.cat-lbl::after{content:'';flex:1;height:1px;background:rgba(44,62,54,.15)}
+.places-grid{display:grid;gap:1.5rem;grid-template-columns:repeat(2,1fr)}
+@media(max-width:540px){.places-grid{grid-template-columns:1fr}}
+.place-card{padding:1.5rem;background:var(--fog);border-radius:12px;border:1.5px solid transparent;transition:border-color .18s,box-shadow .3s}
+.place-card:hover{border-color:var(--sage-light);box-shadow:0 4px 16px var(--shadow)}
+.place-card__name{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;color:var(--pine);margin-bottom:.35rem}
+.place-card__blurb{font-size:.9rem;color:var(--pine-light);line-height:1.65;margin-bottom:.6rem}
+.place-card__dist{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sage);display:flex;align-items:center;gap:.35rem}
+.place-card__dist svg{width:.8rem;height:.8rem;color:var(--amber)}
+/* Getting here */
+.gh-list{display:flex;flex-direction:column;gap:1.5rem}
+.gh-item{display:grid;gap:1rem;grid-template-columns:11rem 1fr;align-items:start}
+@media(max-width:767px){.gh-item{grid-template-columns:1fr}}
+.gh-mode{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--pine);padding:.5rem 1.5rem .5rem 0;border-right:1.5px solid var(--fog)}
+@media(max-width:767px){.gh-mode{border-right:none;border-bottom:1.5px solid var(--fog);padding:.5rem 0}}
+.gh-det{font-size:.95rem;color:var(--pine-light);line-height:1.7;padding-block:.5rem}
+/* Map */
+.map-embed{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:16/8;border:1.5px solid var(--fog)}
+.map-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;border-top:1.5px solid var(--fog)}
+.faq-item{border-bottom:1.5px solid var(--fog)}
+.faq-trigger{display:flex;justify-content:space-between;align-items:center;gap:1.5rem;width:100%;background:none;border:none;text-align:left;padding:1.5rem 0;cursor:pointer;color:var(--pine);font-family:'Fraunces',serif;font-size:clamp(1rem,1.8vw,1.15rem);font-weight:600;line-height:1.3;transition:color .18s}
+.faq-trigger:hover{color:var(--pine-light)}
+.faq-chevron{flex-shrink:0;width:1.2rem;height:1.2rem;color:var(--amber);transition:transform .3s}
+.faq-item--open .faq-chevron{transform:rotate(180deg)}
+.faq-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s}
+.faq-item--open .faq-body{grid-template-rows:1fr}
+.faq-body-inner{overflow:hidden}
+.faq-answer{padding-bottom:1.5rem;color:var(--pine-light);line-height:1.75;font-size:.975rem;max-width:54rem}
+/* Contact */
+.contact-layout{display:grid;gap:3rem;grid-template-columns:1fr 1.3fr;align-items:start}
+@media(max-width:767px){.contact-layout{grid-template-columns:1fr}}
+.ci-item{display:flex;gap:1rem;align-items:flex-start}
+.ci-icon{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:2.4rem;height:2.4rem;border-radius:50%;background:rgba(222,155,65,.15);color:var(--amber)}
+.ci-icon svg{width:1.1rem;height:1.1rem}
+.ci-lbl{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sage);margin-bottom:.3rem}
+.ci-val{font-size:.975rem;color:var(--cream);line-height:1.5}
+.ci-val a:hover{color:var(--amber)}
+/* Form */
+.c-form{background:var(--cream);border-radius:12px;padding:2.5rem;color:var(--espresso)}
+.c-form h2{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:600;color:var(--pine);margin-bottom:.4rem}
+.c-form p.sub{font-size:.9rem;color:var(--pine-light);margin-bottom:2rem}
+.form-row{display:grid;gap:1rem;grid-template-columns:1fr 1fr;margin-bottom:1rem}
+@media(max-width:540px){.form-row{grid-template-columns:1fr}}
+.f-field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.f-lbl{font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--pine)}
+.f-input,.f-textarea,.f-select{font-family:'Work Sans',sans-serif;font-size:.95rem;color:var(--espresso);background:var(--fog);border:1.5px solid transparent;border-radius:6px;padding:.75rem 1rem;width:100%;transition:border-color .18s,background .18s;appearance:none}
+.f-input::placeholder,.f-textarea::placeholder{color:var(--sage)}
+.f-input:focus,.f-textarea:focus,.f-select:focus{outline:none;border-color:var(--pine);background:var(--cream)}
+.f-textarea{resize:vertical;min-height:8rem}
+.f-select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c3e36' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .8rem center;background-size:1rem;padding-right:2.5rem;cursor:pointer}
+.f-submit{margin-top:1.5rem;width:100%;justify-content:center;padding-block:1rem}
+.f-note{margin-top:1rem;font-size:.78rem;color:var(--sage);text-align:center}
+.form-success{display:flex;flex-direction:column;align-items:center;text-align:center;padding:3rem;gap:1rem}
+.form-success svg{width:3rem;height:3rem;color:var(--pine)}
+.form-success h3{font-size:1.3rem;color:var(--pine)}
+.form-success p{color:var(--pine-light);max-width:28rem}
+/* Highlight cards */
+.hl-card{padding:2rem 1.5rem;background:var(--fog);border-radius:12px;border:1.5px solid transparent;transition:border-color .3s}
+.hl-card:hover{border-color:var(--amber)}
+.hl-icon{width:2.2rem;height:2.2rem;color:var(--amber);margin-bottom:1rem}
+.hl-t{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;color:var(--pine);margin-bottom:.4rem}
+.hl-b{font-size:.9rem;color:var(--pine-light);line-height:1.65}
+/* Tip box */
+.tip-box{margin-top:2.5rem;padding:1.25rem 1.5rem;background:var(--cream);border-radius:12px;border-left:3px solid var(--amber)}
+.tip-box p{font-size:.9rem;color:var(--pine-light);line-height:1.7}
+/* About split */
+.about-body p{color:var(--pine-light);line-height:1.75;font-size:1rem;margin-bottom:1rem}
+/* 404 */
+.notfound{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;background:var(--pine);color:var(--cream);position:relative;overflow:hidden}
+.notfound__num{font-family:'Fraunces',serif;font-size:6rem;font-weight:700;color:var(--amber);line-height:1;margin-bottom:1rem}
+.notfound__ridge{position:absolute;inset:auto 0 0 0;height:40%}
+.notfound__inner{position:relative;z-index:1}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" data-type="module">
+const { useState, useEffect, useRef } = React;
+
+// ── Data ────────────────────────────────────────────────────────
+const site = {
+  name:'51 West Tolentino Inn', shortName:'51 West',
+  tagline:"A cool-air basecamp on Tagaytay's western ridge",
+  address:{line1:'Tolentino West',line2:'Tagaytay City, Cavite 4120',country:'Philippines'},
+  phone:'+63 900 000 0000', email:'stay@51westtolentino.example',
+  facebookHandle:'51WestTolentinoInn',
+  facebookUrl:'https://www.facebook.com/51WestTolentinoInn/',
+  agodaUrl:'https://www.agoda.com/51-west-tolentino-inn-tagaytay/hotel/tagaytay-ph.html',
+  mapEmbedSrc:'https://maps.google.com/maps?q=Tolentino%20West%2C%20Tagaytay%20City%2C%20Cavite%2C%20Philippines&t=&z=14&ie=UTF8&iwloc=&output=embed',
+  frontDeskHours:'24 hours — someone is always on duty',
+};
+const navLinks=[
+  {id:'home',label:'Home'},{id:'about',label:'About'},
+  {id:'stay',label:'Rooms & Amenities'},{id:'location',label:"What's Nearby"},
+  {id:'faq',label:'FAQ'},{id:'contact',label:'Contact'},
+];
+const stats=[
+  {value:'~640m',label:'Above sea level'},{value:'1.5–2 hrs',label:'From Metro Manila'},
+  {value:'Tolentino West',label:'Tagaytay City, Cavite'},{value:'10–20 min',label:'To most viewpoints'},
+];
+const values=[
+  {title:'Comfortable, no-fuss rooms',body:'Clean linens, hot showers, and a quiet place to warm up after a day on the ridge. Nothing fancy — just done properly.'},
+  {title:'A ridge-side location',body:"Tucked into Tolentino West, an easy reach of Tagaytay's viewpoints, parks, and the Aguinaldo Highway corridor."},
+  {title:'Hospitality that knows the area',body:"We're a small, family-run operation — ask us where to catch the best sunset, or which carinderia does the best bulalo."},
+];
+const amenities=[
+  {icon:'wifi',label:'Free Wi-Fi throughout'},{icon:'snow',label:'Air-conditioned rooms'},
+  {icon:'parking',label:'Free private parking'},{icon:'clock',label:'24-hour front desk'},
+  {icon:'leaf',label:'Garden & outdoor seating'},{icon:'shower',label:'Hot & cold shower'},
+  {icon:'tv',label:'Flat-screen TV'},{icon:'broom',label:'Daily housekeeping'},
+  {icon:'map',label:'Local tips & directions'},{icon:'noSmoking',label:'Non-smoking rooms available'},
+];
+const rooms=[
+  {name:'Standard Double',sleeps:'Sleeps 2',bed:'1 queen or double bed',description:"A snug room for couples or solo travellers, with air-conditioning, a private hot-shower bathroom, and a small work desk — everything you need after a day exploring the ridge.",features:['Air-conditioning','Private bathroom','Hot shower','Flat-screen TV','Free Wi-Fi']},
+  {name:'Twin Room',sleeps:'Sleeps 2',bed:'2 single beds',description:"Two separate beds make this a comfortable pick for friends, colleagues, or siblings travelling together — same comforts, just split down the middle.",features:['Air-conditioning','Private bathroom','Hot shower','Flat-screen TV','Free Wi-Fi']},
+  {name:'Family Room',sleeps:'Sleeps up to 4',bed:'1 double + 2 singles (configurations vary)',description:"A bit more breathing room for families or small groups, with flexible bedding arrangements. Ask us about connecting rooms if your group is larger.",features:['Air-conditioning','Private bathroom','Hot shower','Flat-screen TV','Free Wi-Fi','Extra bedding on request']},
+];
+const nearby=[
+  {category:'Viewpoints & nature',places:[{name:"People's Park in the Sky",blurb:'Sweeping views over Taal Lake from one of the highest points in town.',distance:'~15–20 min drive'},{name:'Picnic Grove',blurb:'Pine-lined park with viewing decks, picnic huts, ziplines, and horseback rides.',distance:'~10–15 min drive'}]},
+  {category:'Family & things to do',places:[{name:'Sky Ranch Tagaytay',blurb:"A small amusement park with a ridge-top Ferris wheel and views over the caldera.",distance:'~10 min drive'}]},
+  {category:'Food & coffee',places:[{name:'Mahogany Market',blurb:'Stalls selling local produce, snacks, and souvenirs.',distance:'~10 min drive'},{name:'Tagaytay–Calamba Road eateries',blurb:'Restaurants serving bulalo, tawilis, and fresh-brewed coffee.',distance:'~5–10 min drive'}]},
+  {category:'Shopping & errands',places:[{name:'Ayala Malls Serin',blurb:'Shops, a supermarket, and dining options.',distance:'~5–10 min drive'},{name:'Olivarez Plaza area',blurb:'A landmark along the highway, handy for transport connections.',distance:'~5–10 min drive'}]},
+];
+const gettingThere=[
+  {mode:'By car',details:'From Metro Manila, take the Sta. Rosa–Tagaytay Road or the Emilio Aguinaldo Highway through Silang. The drive takes roughly 1.5–2 hours outside of peak traffic.'},
+  {mode:'By bus',details:'Provincial buses to Tagaytay run from terminals around Pasay/Buendia and Coastal Mall. Get off near the Olivarez Plaza / Tolentino junction, then take a short tricycle or rideshare to the inn.'},
+  {mode:'By rideshare or taxi',details:'Grab and local taxis operate throughout Tagaytay. Tricycles ("trikes") are the easiest way to cover short distances around town once you\'ve arrived.'},
+];
+const faqs=[
+  {q:'What time are check-in and check-out?',a:'Standard check-in is from 2:00 PM and check-out is by 12:00 NN. If you\'re arriving early or need a later check-out, let us know in advance — we\'ll do our best to accommodate you depending on availability.'},
+  {q:'Is breakfast included?',a:"Breakfast isn't included in the room rate, but there are cafés and local eateries just a short walk or drive away. Ask our front desk for recommendations."},
+  {q:'Do you have parking?',a:'Yes — free private parking is available on-site for registered guests.'},
+  {q:'Is Wi-Fi available?',a:'Yes, free Wi-Fi is available in all rooms and common areas.'},
+  {q:'Can I book directly instead of through a travel site?',a:"Yes. Message us on Facebook, call or email us, or use the contact form. We'll confirm availability and rates directly — no booking fees."},
+  {q:'What is your cancellation policy?',a:"If you booked through a third-party travel site, that platform's cancellation terms apply. For direct bookings, please get in touch as early as possible if your plans change."},
+  {q:'Do you allow pets?',a:"We're generally not set up for pets, but reach out if you have a service animal or a special circumstance."},
+  {q:'Is smoking allowed?',a:'Rooms are non-smoking. Outdoor and garden areas are available for guests who smoke.'},
+  {q:'What should I pack?',a:'Tagaytay sits on a ridge and is noticeably cooler than Manila, especially in the evenings — a light jacket or sweater goes a long way.'},
+  {q:'Do you accept walk-in guests?',a:"Walk-ins are welcome subject to availability, but we recommend calling ahead — especially on weekends and during the cooler months when Tagaytay gets busy."},
+  {q:'What payment methods do you accept?',a:"Cash is accepted on arrival. Get in touch before your stay if you'd like to ask about other payment options."},
+];
+const highlights=[
+  {icon:'leaf',title:'Family-run',body:'A small, owner-operated property — not a chain, not a franchise. The people at the front desk actually know the area.'},
+  {icon:'clock',title:'Always staffed',body:"Someone is always on duty, day or night. If something comes up, you won't be left waiting."},
+  {icon:'map',title:'Local knowledge',body:"Ask us where to watch the sunset, which restaurants are worth the drive, or how to get to Taal Volcano Island."},
+  {icon:'parking',title:'Free parking',body:"Private on-site parking at no extra charge — one less thing to worry about on the drive up from Manila."},
+];
+
+// ── Icons ───────────────────────────────────────────────────────
+const B={xmlns:'http://www.w3.org/2000/svg',viewBox:'0 0 24 24',fill:'none',stroke:'currentColor',strokeWidth:1.6,strokeLinecap:'round',strokeLinejoin:'round'};
+const ICONS={
+  wifi:<><path d="M2 8.5c5.5-5 14.5-5 20 0"/><path d="M5 12c3.5-3 10.5-3 14 0"/><path d="M8 15.5c2-1.7 6-1.7 8 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></>,
+  snow:<><path d="M12 2v20M4.5 6 19.5 18M19.5 6 4.5 18"/><path d="M12 2 9.5 4.5M12 2l2.5 2.5M12 22l-2.5-2.5M12 22l2.5-2.5"/></>,
+  parking:<><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 16V8h3.2a2.6 2.6 0 0 1 0 5.2H9"/></>,
+  clock:<><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>,
+  leaf:<><path d="M4 20c8 1 15-5 16-16-11 1-17 8-16 16Z"/><path d="M5 19c2.5-3.5 6-7 11-9.5"/></>,
+  shower:<><path d="M6 9a6 6 0 0 1 11.9-1H19a2 2 0 0 1 0 4H6a3 3 0 0 1 0-3Z"/><path d="M7 16v1M10 16v2M13 16v1M16 16v2"/></>,
+  tv:<><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></>,
+  broom:<><path d="M19 4 9.5 13.5"/><path d="M9.5 13.5 4 19l2-2 .5-3.5L9.5 13.5Z"/><path d="M5 21l2.5-2.5"/></>,
+  map:<><path d="M9 4 4 6v14l5-2 6 2 5-2V4l-5 2-6-2Z"/><path d="M9 4v14M15 6v14"/></>,
+  noSmoking:<><circle cx="12" cy="12" r="9"/><path d="M5 5l14 14"/><path d="M5 14h7a2 2 0 0 0 0-4"/><path d="M13 16h6"/></>,
+};
+function Icon({name,className}){const c=ICONS[name];if(!c)return null;return <svg className={`${className||''}`} {...B} aria-hidden="true">{c}</svg>;}
+function Arrow(){return <svg {...B} style={{width:'1rem',height:'1rem'}}><path d="M5 12h14M13 6l6 6-6 6"/></svg>;}
+function Chevron({cls}){return <svg className={cls||''} {...B} style={{flexShrink:0,width:'1.2rem',height:'1.2rem'}}><path d="M6 9l6 6 6-6"/></svg>;}
+function Menu(){return <svg {...B}><path d="M3 6h18M3 12h18M3 18h18"/></svg>;}
+function Close(){return <svg {...B}><path d="M5 5l14 14M19 5 5 19"/></svg>;}
+function PhoneIco(){return <svg {...B}><path d="M5 4h3l1.5 4-2 1.5a11 11 0 0 0 5 5l1.5-2 4 1.5v3a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z"/></svg>;}
+function MailIco(){return <svg {...B}><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 6.5 12 13l9-6.5"/></svg>;}
+function PinIco(){return <svg {...B}><path d="M12 21s7-5.5 7-11a7 7 0 0 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>;}
+function FbIco(){return <svg {...B}><path d="M14 21v-7h2.5l.5-3H14V9c0-.9.3-1.5 1.7-1.5H17V4.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.5-4.1 4.2V11H8v3h2.5v7Z"/></svg>;}
+function CheckIco(){return <svg {...B}><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-5"/></svg>;}
+
+// ── Ridge SVG ───────────────────────────────────────────────────
+function Ridge({tone='on-cream'}){
+  return (
+    <svg className={`ridge ridge--${tone}`} viewBox="0 0 1440 300" preserveAspectRatio="none" aria-hidden="true">
+      <path className="r1" d="M0,170 C140,140 260,195 400,165 C540,135 660,185 800,160 C940,135 1080,185 1220,155 C1320,135 1400,165 1440,150 L1440,300 L0,300 Z"/>
+      <ellipse className="rl" cx="1010" cy="222" rx="150" ry="13"/>
+      <path className="rv" d="M885,232 L985,98 L1003,116 L1021,98 L1125,232 Z"/>
+      <path className="r2" d="M0,210 C160,185 320,235 480,205 C610,180 740,230 880,222 C940,210 1060,210 1120,224 C1240,198 1340,232 1440,205 L1440,300 L0,300 Z"/>
+      <path className="r3" d="M0,250 C150,220 300,270 460,238 C620,205 800,262 980,232 C1140,206 1300,252 1440,228 L1440,300 L0,300 Z"/>
+    </svg>
+  );
+}
+
+// ── Photo placeholder ───────────────────────────────────────────
+function Photo({label,ratio='wide'}){
+  return (
+    <div className={`photo-ph photo-ph--${ratio}`}>
+      <div className="photo-ph__ridge"><Ridge tone="on-pine"/></div>
+      <span className="photo-ph__lbl">{label}</span>
+    </div>
+  );
+}
+
+// ── Section heading ─────────────────────────────────────────────
+function SH({eyebrow,title,children,center}){
+  return (
+    <div className={`sh${center?' sh--center':''}`}>
+      {eyebrow&&<p className="eyebrow">{eyebrow}</p>}
+      <h2 className="sh__title">{title}</h2>
+      {children&&<div className="sh__intro">{children}</div>}
+    </div>
+  );
+}
+
+// ── Navbar ──────────────────────────────────────────────────────
+function Navbar({page,setPage}){
+  const [open,setOpen]=useState(false);
+  const [scrolled,setScrolled]=useState(false);
+  useEffect(()=>{const f=()=>setScrolled(window.scrollY>8);f();window.addEventListener('scroll',f,{passive:true});return()=>window.removeEventListener('scroll',f);},[]);
+  const go=(id)=>{setPage(id);setOpen(false);window.scrollTo({top:0,behavior:'instant'});};
+  return (
+    <header className={`navbar${scrolled?' navbar--scrolled':''}`}>
+      <div className="navbar__inner container">
+        <button className="navbar__brand" style={{background:'none',border:'none',cursor:'pointer',color:'var(--cream)'}} onClick={()=>go('home')}>
+          <svg className="navbar__mark" viewBox="0 0 32 32" aria-hidden="true">
+            <circle cx="22.5" cy="9.5" r="2.4" fill="var(--amber)"/>
+            <path d="M2 26 L11 12 L15 17 L19.5 9 L30 26 Z" fill="var(--cream)"/>
+          </svg>
+          <span className="navbar__wordmark">
+            <span className="navbar__name">{site.shortName}</span>
+            <span className="navbar__sub">Tolentino Inn</span>
+          </span>
+        </button>
+        <nav className={`navbar__nav${open?' navbar__nav--open':''}`}>
+          <ul>
+            {navLinks.map(l=>(
+              <li key={l.id}>
+                <button onClick={()=>go(l.id)} className={page===l.id?'active':''} style={{background:'none',border:'none',cursor:'pointer',color:'inherit'}}>
+                  {l.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+          <button className="btn btn--sm btn--amber" onClick={()=>go('contact')}>Plan your stay</button>
+        </nav>
+        <button className="navbar__toggle" aria-label={open?'Close menu':'Open menu'} onClick={()=>setOpen(o=>!o)}>
+          {open?<Close/>:<Menu/>}
+        </button>
+      </div>
+    </header>
+  );
+}
+
+// ── Footer ──────────────────────────────────────────────────────
+function Footer({setPage}){
+  const yr=new Date().getFullYear();
+  const go=(id)=>{setPage(id);window.scrollTo({top:0,behavior:'instant'});};
+  return (
+    <footer>
+      <div className="footer__divider"><Ridge tone="on-cream"/></div>
+      <div className="footer__main">
+        <div className="container footer__grid">
+          <div>
+            <p className="footer__name">{site.name}</p>
+            <p style={{marginBottom:'1.5rem'}}>{site.tagline}.</p>
+            <a href={site.facebookUrl} target="_blank" rel="noreferrer" style={{display:'inline-flex',alignItems:'center',gap:'.5rem',fontSize:'.72rem',fontFamily:"'Space Mono',monospace",letterSpacing:'.18em',textTransform:'uppercase',color:'var(--cream)',borderBottom:'1.5px solid rgba(247,242,233,.3)',paddingBottom:'.2rem'}}>
+              <FbIco/> @{site.facebookHandle}
+            </a>
+          </div>
+          <div>
+            <p className="footer__hdg">Explore</p>
+            <ul className="footer__links">
+              {navLinks.map(l=><li key={l.id}><button onClick={()=>go(l.id)} style={{background:'none',border:'none',cursor:'pointer',color:'inherit',padding:0}}>{l.label}</button></li>)}
+            </ul>
+          </div>
+          <div>
+            <p className="footer__hdg">Find us</p>
+            <ul className="footer__contact">
+              <li><PinIco className="footer__icon"/><span>{site.address.line1}<br/>{site.address.line2}<br/>{site.address.country}</span></li>
+              <li><PhoneIco className="footer__icon"/><a href={`tel:${site.phone}`}>{site.phone}</a></li>
+              <li><MailIco className="footer__icon"/><a href={`mailto:${site.email}`}>{site.email}</a></li>
+            </ul>
+          </div>
+          <div>
+            <p className="footer__hdg">Front desk</p>
+            <p style={{color:'var(--cream)',marginBottom:'.75rem'}}>{site.frontDeskHours}</p>
+            <p style={{fontSize:'.85rem',marginBottom:'1.5rem'}}>No booking portal yet — message us directly.</p>
+            <button onClick={()=>go('contact')} className="btn btn--sm btn--outline-cream">Get in touch</button>
+          </div>
+        </div>
+        <div className="container footer__bottom">
+          <p>© {yr} {site.name}. All rights reserved.</p>
+          <p style={{fontFamily:"'Space Mono',monospace",fontSize:'.62rem',letterSpacing:'.18em',textTransform:'uppercase',color:'var(--sage-light)'}}>Tolentino West · Tagaytay City · Cavite</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+// ── Pages ───────────────────────────────────────────────────────
+function HomePage({setPage}){
+  const go=(id)=>{setPage(id);window.scrollTo({top:0,behavior:'instant'});};
+  return <>
+    <section className="hero">
+      <div className="hero__bg" aria-hidden="true"/>
+      <div className="hero__ridge"><Ridge tone="on-pine"/></div>
+      <div className="hero__content container">
+        <p className="eyebrow">Tagaytay City · Cavite · Philippines</p>
+        <h1 className="hero__title">Cool air, easy nights,<br/>ridge-top mornings.</h1>
+        <p className="hero__tagline">{site.name} sits on Tagaytay's western ridge — close enough to every viewpoint and food strip, quiet enough to actually sleep. Simple rooms, free parking, always someone on the desk.</p>
+        <div className="hero__actions">
+          <button onClick={()=>go('contact')} className="btn btn--amber">Plan your stay</button>
+          <button onClick={()=>go('stay')} className="btn btn--outline-cream">See rooms</button>
+        </div>
+      </div>
+    </section>
+
+    <div className="stats-bar">
+      <div className="container stats-inner">
+        {stats.map(s=><div key={s.label} className="stat"><div className="stat__v">{s.value}</div><div className="stat__l">{s.label}</div></div>)}
+      </div>
+    </div>
+
+    <section className="section">
+      <div className="container">
+        <SH eyebrow="Why stay here" title="A proper basecamp for Tagaytay"><p>Tagaytay draws people for the cool mountain air, the views over Taal Lake, and the food — and 51 West is set up to be the easy, comfortable place you come back to at the end of the day.</p></SH>
+        <div className="grid-3">
+          {values.map((v,i)=><div key={v.title} className="card card--fog">
+            <div className="val__num" aria-hidden="true">{String(i+1).padStart(2,'0')}</div>
+            <h3 className="val__t">{v.title}</h3><p className="val__b">{v.body}</p>
+          </div>)}
+        </div>
+      </div>
+    </section>
+
+    <section className="section section--fog">
+      <div className="container">
+        <SH eyebrow="Where you'll sleep" title="Rooms"><p>Three room types, all air-conditioned with private bathrooms, hot showers, and free Wi-Fi.</p></SH>
+        <div className="grid-3">
+          {rooms.map(r=><div key={r.name}>
+            <div style={{marginBottom:'1.5rem'}}><Photo label={`Photo — ${r.name}`} ratio="wide"/></div>
+            <p style={{fontFamily:"'Space Mono',monospace",fontSize:'.62rem',letterSpacing:'.08em',textTransform:'uppercase',color:'var(--sage)',marginBottom:'.4rem'}}>{r.bed} · {r.sleeps}</p>
+            <h3 style={{fontFamily:"'Fraunces',serif",fontSize:'1.2rem',fontWeight:600,color:'var(--pine)',marginBottom:'.5rem'}}>{r.name}</h3>
+            <p style={{fontSize:'.9rem',color:'var(--pine-light)',lineHeight:1.65}}>{r.description}</p>
+          </div>)}
+        </div>
+        <div style={{marginTop:'2.5rem'}}>
+          <button onClick={()=>go('stay')} className="link-arrow" style={{background:'none',border:'none',cursor:'pointer',color:'var(--pine)',borderBottom:'1.5px solid',paddingBottom:'.2rem',display:'inline-flex',alignItems:'center',gap:'.4rem',fontFamily:"'Space Mono',monospace",fontSize:'.78rem',letterSpacing:'.06em',textTransform:'uppercase',fontWeight:700}}>Full details & amenities <Arrow/></button>
+        </div>
+      </div>
+    </section>
+
+    <section className="section section--pine">
+      <div className="container">
+        <SH eyebrow="What's included" title="Amenities" center><p>Everything you'd expect from a well-run small inn — and nothing you're paying for that you won't use.</p></SH>
+        <div className="grid-5">
+          {amenities.map(a=><div key={a.label} className="am-item"><div className="am-icon"><Icon name={a.icon}/></div><span>{a.label}</span></div>)}
+        </div>
+      </div>
+    </section>
+
+    <section className="section">
+      <div className="container">
+        <div className="grid-2">
+          <div>
+            <SH eyebrow="What's nearby" title="Close to everything Tagaytay is known for"><p>Tolentino West puts you a short ride from Picnic Grove, People's Park in the Sky, and the Aguinaldo Highway food corridor — while staying far enough from the main strip to actually get a good night's sleep.</p></SH>
+            <button onClick={()=>go('location')} className="link-arrow" style={{background:'none',border:'none',cursor:'pointer',color:'var(--pine)',borderBottom:'1.5px solid',paddingBottom:'.2rem',display:'inline-flex',alignItems:'center',gap:'.4rem',fontFamily:"'Space Mono',monospace",fontSize:'.78rem',letterSpacing:'.06em',textTransform:'uppercase',fontWeight:700}}>See what's nearby <Arrow/></button>
+          </div>
+          <Photo label="Photo — view towards Taal Lake" ratio="wide"/>
+        </div>
+      </div>
+    </section>
+
+    <section className="cta-band">
+      <div className="container">
+        <h2>Ready to book?</h2>
+        <p>No online booking portal yet — just get in touch directly and we'll sort out the rest.</p>
+        <div className="cta-actions">
+          <button onClick={()=>go('contact')} className="btn btn--amber">Contact us</button>
+          <a href={site.agodaUrl} target="_blank" rel="noreferrer" className="btn btn--outline-cream">Book via Agoda</a>
+        </div>
+      </div>
+    </section>
+  </>;
+}
+
+function AboutPage({setPage}){
+  const go=(id)=>{setPage(id);window.scrollTo({top:0,behavior:'instant'});};
+  return <>
+    <div className="page-header">
+      <div className="container page-header__inner">
+        <p className="eyebrow">About</p>
+        <h1>A small inn on<br/>the western ridge</h1>
+        <p style={{marginTop:'1rem',color:'var(--sage-light)',maxWidth:'36rem',lineHeight:1.7}}>{site.name} is a family-run guesthouse in Tolentino West, Tagaytay City — positioned on the quieter western side of the ridge, away from the busiest strips.</p>
+      </div>
+      <div className="page-header__ridge"><Ridge tone="on-pine"/></div>
+    </div>
+
+    <section className="section">
+      <div className="container">
+        <div className="grid-2">
+          <div>
+            <SH eyebrow="Our story" title="Built for guests, run by family"/>
+            <div className="about-body">
+              <p>{site.name} started as a simple idea: create a clean, comfortable place to stay in Tagaytay that treats guests like people — not booking numbers. The inn sits in Tolentino West, on the ridge's quieter western flank, where the cool mountain air arrives early in the morning and the noise of the main highway fades out in the evening.</p>
+              <p>We're not a resort or a boutique hotel with a concept behind it. We're a well-kept small inn with friendly staff, good Wi-Fi, reliable hot water, and free parking — the practical things that make a difference when you've been driving since Manila.</p>
+              <p>Tagaytay gets busy on weekends and holidays, and it can be hard to find a place that's close to everything without being in the middle of everything. That's the gap we're trying to fill.</p>
+            </div>
+            <div style={{marginTop:'2rem'}}>
+              <button onClick={()=>go('contact')} className="link-arrow" style={{background:'none',border:'none',cursor:'pointer',color:'var(--pine)',borderBottom:'1.5px solid',paddingBottom:'.2rem',display:'inline-flex',alignItems:'center',gap:'.4rem',fontFamily:"'Space Mono',monospace",fontSize:'.78rem',letterSpacing:'.06em',textTransform:'uppercase',fontWeight:700}}>Get in touch <Arrow/></button>
+            </div>
+          </div>
+          <Photo label="Photo — inn exterior / entrance" ratio="tall"/>
+        </div>
+      </div>
+    </section>
+
+    <section className="section section--fog">
+      <div className="container">
+        <SH eyebrow="What makes us different" title="What you can rely on"><p>Small properties live or die on the details. Here's what we focus on.</p></SH>
+        <div className="grid-3" style={{gridTemplateColumns:'repeat(4,1fr)'}}>
+          {highlights.map(h=><div key={h.title} className="hl-card">
+            <Icon name={h.icon} className="hl-icon"/>
+            <h3 className="hl-t">{h.title}</h3><p className="hl-b">{h.body}</p>
+          </div>)}
+        </div>
+      </div>
+    </section>
+
+    <section className="cta-band">
+      <div className="container">
+        <h2>Come see for yourself</h2>
+        <p>Drop us a message or give us a call — we'll let you know what's available and what to expect.</p>
+        <div className="cta-actions">
+          <button onClick={()=>go('contact')} className="btn btn--amber">Contact us</button>
+          <a href={site.facebookUrl} target="_blank" rel="noreferrer" className="btn btn--outline-cream">Find us on Facebook</a>
+        </div>
+      </div>
+    </section>
+  </>;
+}
+
+function StayPage({setPage}){
+  const go=(id)=>{setPage(id);window.scrollTo({top:0,behavior:'instant'});};
+  const policies=[{label:'Check-in',value:'2:00 PM',note:'Early check-in on request, subject to availability.'},{label:'Check-out',value:'12:00 NN',note:'Late check-out on request, subject to availability.'},{label:'Front desk',value:'24 hours',note:'Someone is always on duty.'}];
+  return <>
+    <div className="page-header">
+      <div className="container page-header__inner">
+        <p className="eyebrow">Rooms & Amenities</p>
+        <h1>Where you'll sleep</h1>
+        <p style={{marginTop:'1rem',color:'var(--sage-light)',maxWidth:'36rem',lineHeight:1.7}}>Three straightforward room types — all air-conditioned, all with private bathrooms and hot showers. Clean, comfortable, and ready when you arrive.</p>
+      </div>
+      <div className="page-header__ridge"><Ridge tone="on-pine"/></div>
+    </div>
+
+    <section className="section">
+      <div className="container">
+        <div style={{display:'flex',flexDirection:'column',gap:'4rem'}}>
+          {rooms.map((r,i)=>(
+            <div key={r.name} className="room-card" style={i%2===1?{direction:'rtl'}:{}}>
+              <div style={{direction:'ltr'}}><Photo label={`Photo — ${r.name}`} ratio="wide"/></div>
+              <div style={{direction:'ltr'}}>
+                <div style={{display:'flex',gap:'.5rem',marginBottom:'.75rem',flexWrap:'wrap'}}>
+                  <span className="room-card__badge">{r.sleeps}</span>
+                  <span className="room-card__badge">{r.bed}</span>
+                </div>
+                <h2 className="room-card__name">{r.name}</h2>
+                <p className="room-card__desc">{r.description}</p>
+                <ul className="room-feats">{r.features.map(f=><li key={f} className="room-feat">{f}</li>)}</ul>
+                <button onClick={()=>go('contact')} className="btn btn--amber">Enquire about this room</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section className="section section--fog">
+      <div className="container">
+        <SH eyebrow="Facilities" title="Everything that's included"><p>All amenities available to registered guests. No hidden extras, no resort fees.</p></SH>
+        <div className="grid-5">
+          {amenities.map(a=><div key={a.label} className="am-card"><Icon name={a.icon}/><span>{a.label}</span></div>)}
+        </div>
+      </div>
+    </section>
+
+    <section className="section section--pine">
+      <div className="container">
+        <SH eyebrow="Good to know" title="Policies at a glance" center><p>For anything not covered here, the <button onClick={()=>go('faq')} style={{background:'none',border:'none',cursor:'pointer',color:'var(--amber)',textDecoration:'underline',fontFamily:'inherit',fontSize:'inherit'}}>FAQ page</button> has more detail.</p></SH>
+        <div className="pol-grid">
+          {policies.map(p=><div key={p.label} className="card" style={{background:'rgba(247,242,233,.06)',border:'1.5px solid rgba(247,242,233,.12)'}}>
+            <div className="pol__lbl">{p.label}</div>
+            <div className="pol__val">{p.value}</div>
+            <div className="pol__note">{p.note}</div>
+          </div>)}
+        </div>
+      </div>
+    </section>
+
+    <section className="cta-band">
+      <div className="container">
+        <h2>Ready to book?</h2>
+        <p>Contact us directly or book through Agoda — either way we'll make sure everything is sorted before you arrive.</p>
+        <div className="cta-actions">
+          <button onClick={()=>go('contact')} className="btn btn--amber">Contact us directly</button>
+          <a href={site.agodaUrl} target="_blank" rel="noreferrer" className="btn btn--outline-cream">Book via Agoda</a>
+        </div>
+      </div>
+    </section>
+  </>;
+}
+
+function LocationPage(){
+  return <>
+    <div className="page-header">
+      <div className="container page-header__inner">
+        <p className="eyebrow">What's Nearby</p>
+        <h1>Tagaytay at<br/>your doorstep</h1>
+        <p style={{marginTop:'1rem',color:'var(--sage-light)',maxWidth:'36rem',lineHeight:1.7}}>From the inn, almost everything Tagaytay is known for is a 10–20 minute drive. Here's what's around.</p>
+      </div>
+      <div className="page-header__ridge"><Ridge tone="on-pine"/></div>
+    </div>
+
+    <section className="section">
+      <div className="container">
+        <SH eyebrow="Attractions & essentials" title="What's within reach"><p>Distances and travel times are approximate — traffic varies, especially on weekends and holidays.</p></SH>
+        <div className="loc-cats">
+          {nearby.map(cat=><div key={cat.category}>
+            <p className="cat-lbl">{cat.category}</p>
+            <div className="places-grid">
+              {cat.places.map(p=><div key={p.name} className="place-card">
+                <h3 className="place-card__name">{p.name}</h3>
+                <p className="place-card__blurb">{p.blurb}</p>
+                <p className="place-card__dist"><svg {...B} style={{width:'.8rem',height:'.8rem',color:'var(--amber)'}}><path d="M12 21s7-5.5 7-11a7 7 0 0 0-14 0c0 5.5 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>{p.distance}</p>
+              </div>)}
+            </div>
+          </div>)}
+        </div>
+      </div>
+    </section>
+
+    <section className="section section--fog">
+      <div className="container">
+        <SH eyebrow="Getting here" title="How to reach us"><p>We're in Tolentino West, Tagaytay City — accessible by private car, bus, or rideshare from Metro Manila.</p></SH>
+        <div className="gh-list">
+          {gettingThere.map(g=><div key={g.mode} className="gh-item">
+            <div className="gh-mode">{g.mode}</div>
+            <p className="gh-det">{g.details}</p>
+          </div>)}
+        </div>
+        <div className="tip-box"><p><strong style={{color:'var(--pine)'}}>Tip:</strong> If you're driving up on a Friday evening or weekend, build in extra time. The Tagaytay–Calamba Road can get congested. Leaving before 8 AM or after 9 PM usually makes the drive much smoother.</p></div>
+      </div>
+    </section>
+
+    <section className="section">
+      <div className="container">
+        <SH eyebrow="Find us" title="On the map"><p>{site.address.line1}, {site.address.line2}, {site.address.country}</p></SH>
+        <div className="map-embed">
+          <iframe title="Map" src={site.mapEmbedSrc} loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen/>
+        </div>
+        <div style={{marginTop:'1.5rem',display:'flex',gap:'1rem',flexWrap:'wrap'}}>
+          <a href={`https://maps.google.com/?q=${encodeURIComponent(site.address.line1+', '+site.address.line2)}`} target="_blank" rel="noreferrer" className="btn btn--outline-pine btn--sm">Open in Google Maps</a>
+          <a href={`https://waze.com/ul?q=${encodeURIComponent('51 West Tolentino Inn Tagaytay')}`} target="_blank" rel="noreferrer" className="btn btn--outline-pine btn--sm">Open in Waze</a>
+        </div>
+      </div>
+    </section>
+  </>;
+}
+
+function FAQItem({q,a,id}){
+  const [open,setOpen]=useState(false);
+  return (
+    <div className={`faq-item${open?' faq-item--open':''}`}>
+      <button type="button" className="faq-trigger" aria-expanded={open} onClick={()=>setOpen(o=>!o)}>
+        {q}<Chevron cls="faq-chevron"/>
+      </button>
+      <div className="faq-body"><div className="faq-body-inner"><p className="faq-answer">{a}</p></div></div>
+    </div>
+  );
+}
+
+function FAQPage({setPage}){
+  const go=(id)=>{setPage(id);window.scrollTo({top:0,behavior:'instant'});};
+  return <>
+    <div className="page-header">
+      <div className="container page-header__inner">
+        <p className="eyebrow">FAQ</p>
+        <h1>Frequently asked<br/>questions</h1>
+        <p style={{marginTop:'1rem',color:'var(--sage-light)',maxWidth:'36rem',lineHeight:1.7}}>Answers to the things guests usually ask before they arrive. Can't find what you're looking for? Just contact us.</p>
+      </div>
+      <div className="page-header__ridge"><Ridge tone="on-pine"/></div>
+    </div>
+
+    <section className="section">
+      <div className="container" style={{maxWidth:'58rem'}}>
+        <SH eyebrow="All questions" title="Got a question?"/>
+        <div className="faq-list">
+          {faqs.map((f,i)=><FAQItem key={i} id={i} q={f.q} a={f.a}/>)}
+        </div>
+      </div>
+    </section>
+
+    <section className="section section--fog">
+      <div className="container" style={{textAlign:'center',maxWidth:'44rem'}}>
+        <SH eyebrow="Still not sure?" title="We're happy to answer" center><p>Drop us a message, give us a call, or find us on Facebook. We're a small team — expect a real reply, not a bot.</p></SH>
+        <button onClick={()=>go('contact')} className="btn btn--amber">Contact us</button>
+      </div>
+    </section>
+  </>;
+}
+
+function ContactPage(){
+  const init={firstName:'',lastName:'',email:'',phone:'',inquiry:'general',checkIn:'',checkOut:'',guests:'2',message:''};
+  const [form,setForm]=useState(init);
+  const [done,setDone]=useState(false);
+  const ch=(e)=>{const{name,value}=e.target;setForm(p=>({...p,[name]:value}));};
+  const sub=(e)=>{e.preventDefault();setDone(true);};
+  return <>
+    <div className="page-header">
+      <div className="container page-header__inner">
+        <p className="eyebrow">Contact</p>
+        <h1>Get in touch</h1>
+        <p style={{marginTop:'1rem',color:'var(--sage-light)',maxWidth:'36rem',lineHeight:1.7}}>Whether you want to check availability, ask a question, or make a direct booking — we're reachable here, by phone, or on Facebook.</p>
+      </div>
+      <div className="page-header__ridge"><Ridge tone="on-pine"/></div>
+    </div>
+
+    <section className="section section--pine">
+      <div className="container">
+        <div className="contact-layout">
+          <div>
+            <SH eyebrow="Reach us" title="Direct contact"/>
+            <div style={{display:'flex',flexDirection:'column',gap:'2rem',marginTop:'1rem'}}>
+              {[{ico:<PinIco/>,lbl:'Address',val:<>{site.address.line1}<br/>{site.address.line2}<br/>{site.address.country}</>},
+                {ico:<PhoneIco/>,lbl:'Phone',val:<a href={`tel:${site.phone}`}>{site.phone}</a>},
+                {ico:<MailIco/>,lbl:'Email',val:<a href={`mailto:${site.email}`}>{site.email}</a>},
+                {ico:<FbIco/>,lbl:'Facebook',val:<><a href={site.facebookUrl} target="_blank" rel="noreferrer">@{site.facebookHandle}</a><br/><span style={{fontSize:'.82rem',color:'var(--sage-light)'}}>Fastest response — we check messages daily.</span></>}
+              ].map(c=>(
+                <div key={c.lbl} className="ci-item">
+                  <div className="ci-icon">{c.ico}</div>
+                  <div><p className="ci-lbl">{c.lbl}</p><p className="ci-val">{c.val}</p></div>
+                </div>
+              ))}
+            </div>
+            <div style={{marginTop:'2rem',padding:'1.25rem',background:'rgba(247,242,233,.07)',borderRadius:'12px',borderLeft:'3px solid var(--amber)'}}>
+              <p style={{color:'var(--sage-light)',fontSize:'.88rem',lineHeight:1.65}}><strong style={{color:'var(--cream)'}}>Front desk:</strong> {site.frontDeskHours}.</p>
+            </div>
+          </div>
+
+          <div className="c-form">
+            {done?(
+              <div className="form-success">
+                <CheckIco/>
+                <h3>Message sent!</h3>
+                <p>Thanks for reaching out. We'll get back to you as soon as we can — usually within a day.</p>
+                <button className="btn btn--outline-pine btn--sm" onClick={()=>{setForm(init);setDone(false);}}>Send another message</button>
+              </div>
+            ):(
+              <form onSubmit={sub} noValidate>
+                <h2>Send us a message</h2>
+                <p className="sub">Fill in as much or as little as you like — we'll follow up.</p>
+                <div className="form-row">
+                  <div className="f-field"><label className="f-lbl" htmlFor="fn">First name</label><input id="fn" name="firstName" type="text" className="f-input" placeholder="Maria" value={form.firstName} onChange={ch} required/></div>
+                  <div className="f-field"><label className="f-lbl" htmlFor="ln">Last name</label><input id="ln" name="lastName" type="text" className="f-input" placeholder="Santos" value={form.lastName} onChange={ch} required/></div>
+                </div>
+                <div className="form-row">
+                  <div className="f-field"><label className="f-lbl" htmlFor="em">Email address</label><input id="em" name="email" type="email" className="f-input" placeholder="maria@example.com" value={form.email} onChange={ch} required/></div>
+                  <div className="f-field"><label className="f-lbl" htmlFor="ph">Phone (optional)</label><input id="ph" name="phone" type="tel" className="f-input" placeholder="+63 9XX XXX XXXX" value={form.phone} onChange={ch}/></div>
+                </div>
+                <div className="f-field"><label className="f-lbl" htmlFor="inq">Type of enquiry</label>
+                  <select id="inq" name="inquiry" className="f-select" value={form.inquiry} onChange={ch}>
+                    <option value="general">General question</option>
+                    <option value="booking">Booking / availability</option>
+                    <option value="group">Group or event</option>
+                    <option value="other">Something else</option>
+                  </select>
+                </div>
+                {form.inquiry==='booking'&&<>
+                  <div className="form-row">
+                    <div className="f-field"><label className="f-lbl" htmlFor="ci">Check-in date</label><input id="ci" name="checkIn" type="date" className="f-input" value={form.checkIn} onChange={ch}/></div>
+                    <div className="f-field"><label className="f-lbl" htmlFor="co">Check-out date</label><input id="co" name="checkOut" type="date" className="f-input" value={form.checkOut} onChange={ch}/></div>
+                  </div>
+                  <div className="f-field"><label className="f-lbl" htmlFor="gu">Guests</label>
+                    <select id="gu" name="guests" className="f-select" value={form.guests} onChange={ch}>
+                      {['1','2','3','4','5+'].map(n=><option key={n} value={n}>{n} {n==='1'?'guest':'guests'}</option>)}
+                    </select>
+                  </div>
+                </>}
+                <div className="f-field"><label className="f-lbl" htmlFor="msg">Message</label><textarea id="msg" name="message" className="f-textarea" placeholder="Anything specific you'd like to know or mention…" value={form.message} onChange={ch}/></div>
+                <button type="submit" className="btn btn--amber f-submit">Send message</button>
+                <p className="f-note">This form is a static-site demo — in production it will deliver your message to our inbox.</p>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  </>;
+}
+
+// ── App ─────────────────────────────────────────────────────────
+function App(){
+  const [page,setPage]=useState('home');
+  const pages={home:<HomePage setPage={setPage}/>,about:<AboutPage setPage={setPage}/>,stay:<StayPage setPage={setPage}/>,location:<LocationPage/>,faq:<FAQPage setPage={setPage}/>,contact:<ContactPage/>};
+  return (
+    <div className="site">
+      <Navbar page={page} setPage={setPage}/>
+      <main className="site__main">{pages[page]||pages.home}</main>
+      <Footer setPage={setPage}/>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+@use 'variables' as v;
+
+// -------------------------------------------------------------
+// RidgeDivider — the recurring ridge / Taal Volcano silhouette
+// -------------------------------------------------------------
+.ridge {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ridge--flip {
+  transform: scaleY(-1);
+}
+
+// Tone used on the dark pine hero — soft, low-contrast misty layers
+.ridge--on-pine {
+  --ridge-1: var(--pine-dark);
+  --ridge-2: rgba(143, 168, 156, 0.35);
+  --ridge-3: rgba(247, 242, 233, 0.16);
+  --ridge-volcano: rgba(222, 155, 65, 0.6);
+  --ridge-lake: rgba(195, 210, 200, 0.22);
+}
+
+// Tone used on cream backgrounds — hills that resolve into the pine footer
+.ridge--on-cream {
+  --ridge-1: var(--sage-light);
+  --ridge-2: var(--pine-light);
+  --ridge-3: var(--pine);
+  --ridge-volcano: var(--amber);
+  --ridge-lake: var(--sage-light);
+}
+
+.ridge__layer--1 {
+  fill: var(--ridge-1);
+}
+
+.ridge__layer--2 {
+  fill: var(--ridge-2);
+}
+
+.ridge__layer--3 {
+  fill: var(--ridge-3);
+}
+
+.ridge__volcano {
+  fill: var(--ridge-volcano);
+}
+
+.ridge__lake {
+  fill: var(--ridge-lake);
+}
+
+// -------------------------------------------------------------
+// PhotoPlaceholder — gradient panel marking where a real photo
+// of the property can be dropped in later
+// -------------------------------------------------------------
+.photo-placeholder {
+  position: relative;
+  overflow: hidden;
+  border-radius: v.$radius-md;
+  background: linear-gradient(155deg, var(--pine) 0%, var(--pine-light) 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.photo-placeholder--wide {
+  aspect-ratio: 4 / 3;
+}
+
+.photo-placeholder--tall {
+  aspect-ratio: 3 / 4;
+}
+
+.photo-placeholder--square {
+  aspect-ratio: 1 / 1;
+}
+
+.photo-placeholder--banner {
+  aspect-ratio: 16 / 7;
+}
+
+.photo-placeholder__ridge {
+  position: absolute;
+  inset: auto 0 0 0;
+  width: 100%;
+  height: 65%;
+}
+
+.photo-placeholder__label {
+  position: relative;
+  z-index: 1;
+  margin: v.$space-md;
+  padding: 0.45rem 0.9rem;
+  background: rgba(31, 46, 40, 0.55);
+  color: var(--cream);
+  font-family: v.$font-mono;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: v.$radius-sm;
+  text-align: center;
+}

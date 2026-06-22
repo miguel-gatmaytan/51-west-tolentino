@@ -1,0 +1,132 @@
+@use '../variables' as v;
+@use '../mixins' as m;
+
+// Room cards
+.rooms-list {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xl;
+}
+
+.room-card {
+  display: grid;
+  gap: v.$space-xl;
+  align-items: start;
+
+  @include m.from(medium) {
+    grid-template-columns: 1.1fr 1fr;
+  }
+
+  &:nth-child(even) {
+    @include m.from(medium) {
+      .room-card__photo { order: 2; }
+      .room-card__info { order: 1; }
+    }
+  }
+}
+
+.room-card__meta {
+  display: flex;
+  gap: v.$space-sm;
+  margin-bottom: v.$space-sm;
+}
+
+.room-card__badge {
+  @include m.label-text;
+  font-size: 0.65rem;
+  background-color: var(--fog);
+  color: var(--pine);
+  padding: 0.3rem 0.7rem;
+  border-radius: 100px;
+}
+
+.room-card__name {
+  font-family: v.$font-display;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 600;
+  color: var(--pine);
+  margin-bottom: v.$space-sm;
+}
+
+.room-card__desc {
+  color: var(--pine-light);
+  line-height: 1.75;
+  margin-bottom: v.$space-md;
+}
+
+.room-card__features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-xs;
+  margin-bottom: v.$space-lg;
+
+  li {
+    @include m.label-text;
+    font-size: 0.65rem;
+    background-color: rgba(44, 62, 54, 0.08);
+    color: var(--pine);
+    padding: 0.25rem 0.7rem;
+    border-radius: 100px;
+  }
+}
+
+// Full amenities grid on Stay page
+.full-amenities {
+  display: grid;
+  gap: v.$space-md;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include m.from(medium) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+.amenity-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.6rem;
+  padding: v.$space-md v.$space-sm;
+  background-color: var(--fog);
+  border-radius: v.$radius-md;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--pine);
+
+  svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    color: var(--amber);
+  }
+}
+
+// Policies section
+.policies-grid {
+  display: grid;
+  gap: v.$space-md;
+  grid-template-columns: 1fr;
+
+  @include m.from(medium) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.policy-item__label {
+  @include m.label-text;
+  font-size: 0.7rem;
+  color: var(--amber);
+  margin-bottom: 0.4rem;
+}
+
+.policy-item__value {
+  font-family: v.$font-display;
+  font-size: 1.1rem;
+  color: var(--cream);
+  margin-bottom: 0.35rem;
+}
+
+.policy-item__note {
+  font-size: 0.85rem;
+  color: var(--sage-light);
+}

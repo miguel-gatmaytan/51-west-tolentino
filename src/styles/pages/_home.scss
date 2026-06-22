@@ -1,0 +1,306 @@
+@use '../variables' as v;
+@use '../mixins' as m;
+
+// -------------------------------------------------------------
+// Hero
+// -------------------------------------------------------------
+.hero {
+  position: relative;
+  background-color: var(--pine);
+  color: var(--cream);
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  // Subtle radial glow to suggest sunrise over the ridge
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 65% 30%,
+      rgba(222, 155, 65, 0.18) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 80% at 20% 60%,
+      rgba(62, 90, 77, 0.5) 0%,
+      transparent 70%
+    ),
+    var(--pine);
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+.hero__ridge {
+  position: absolute;
+  inset: auto 0 0 0;
+  width: 100%;
+  height: 55%;
+  z-index: 1;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  @include m.container;
+  padding-bottom: v.$space-2xl;
+  padding-top: v.$space-2xl;
+  max-width: 52rem;
+}
+
+.hero__eyebrow {
+  @include m.label-text;
+  color: var(--amber);
+  margin-bottom: v.$space-md;
+}
+
+.hero__title {
+  color: var(--cream);
+  margin-bottom: v.$space-md;
+}
+
+.hero__tagline {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--sage-light);
+  max-width: 36rem;
+  line-height: 1.65;
+  margin-bottom: v.$space-lg;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-sm;
+}
+
+.hero__scroll-hint {
+  position: absolute;
+  bottom: v.$space-lg;
+  right: v.$space-lg;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  @include m.label-text;
+  font-size: 0.65rem;
+  color: var(--sage-light);
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    animation: bounce-y 2s ease-in-out infinite;
+  }
+
+  @include m.reduced-motion {
+    svg {
+      animation: none;
+    }
+  }
+}
+
+@keyframes bounce-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+// -------------------------------------------------------------
+// Stats bar
+// -------------------------------------------------------------
+.stats-bar {
+  background-color: var(--fog);
+  border-bottom: 1.5px solid rgba(44, 62, 54, 0.1);
+}
+
+.stats-bar__inner {
+  @include m.container;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+
+  @include m.from(medium) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stats-bar__item {
+  padding: v.$space-md v.$space-sm;
+  border-right: 1.5px solid rgba(44, 62, 54, 0.1);
+  border-bottom: 1.5px solid rgba(44, 62, 54, 0.1);
+
+  @include m.from(medium) {
+    padding: v.$space-lg;
+    border-bottom: none;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+}
+
+.stats-bar__value {
+  font-family: v.$font-display;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--pine);
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.stats-bar__label {
+  @include m.label-text;
+  font-size: 0.65rem;
+  color: var(--sage);
+}
+
+// -------------------------------------------------------------
+// Value propositions (3-column)
+// -------------------------------------------------------------
+.values-grid {
+  display: grid;
+  gap: v.$space-md;
+  grid-template-columns: 1fr;
+
+  @include m.from(medium) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.values-grid__number {
+  font-family: v.$font-display;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--fog);
+  line-height: 1;
+  margin-bottom: v.$space-sm;
+}
+
+.values-grid__title {
+  font-family: v.$font-display;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--pine);
+  margin-bottom: 0.6rem;
+}
+
+.values-grid__body {
+  color: var(--pine-light);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+// -------------------------------------------------------------
+// Rooms preview strip
+// -------------------------------------------------------------
+.rooms-preview {
+  display: grid;
+  gap: v.$space-md;
+  grid-template-columns: 1fr;
+
+  @include m.from(medium) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.rooms-preview__photo {
+  margin-bottom: v.$space-md;
+}
+
+.rooms-preview__meta {
+  @include m.label-text;
+  font-size: 0.65rem;
+  color: var(--sage);
+  margin-bottom: 0.4rem;
+}
+
+.rooms-preview__name {
+  font-family: v.$font-display;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--pine);
+  margin-bottom: 0.5rem;
+}
+
+.rooms-preview__desc {
+  font-size: 0.9rem;
+  color: var(--pine-light);
+  line-height: 1.65;
+}
+
+// -------------------------------------------------------------
+// Amenities grid on home
+// -------------------------------------------------------------
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: v.$space-md;
+
+  @include m.from(medium) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+// -------------------------------------------------------------
+// Location teaser
+// -------------------------------------------------------------
+.location-teaser {
+  display: grid;
+  gap: v.$space-xl;
+  align-items: center;
+
+  @include m.from(medium) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.location-teaser__text {
+  order: 1;
+}
+
+.location-teaser__photo {
+  order: 2;
+}
+
+// -------------------------------------------------------------
+// Home CTA band
+// -------------------------------------------------------------
+.cta-band {
+  background-color: var(--pine);
+  color: var(--cream);
+  padding-block: v.$space-xl;
+  text-align: center;
+
+  h2 {
+    color: var(--cream);
+    margin-bottom: v.$space-sm;
+  }
+
+  p {
+    color: var(--sage-light);
+    margin-bottom: v.$space-lg;
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+}
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-sm;
+  justify-content: center;
+}

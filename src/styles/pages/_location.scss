@@ -1,0 +1,135 @@
+@use '../variables' as v;
+@use '../mixins' as m;
+
+.location-categories {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xl;
+}
+
+.location-category__label {
+  @include m.label-text;
+  font-size: 0.7rem;
+  color: var(--amber);
+  margin-bottom: v.$space-md;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  &::after {
+    content: '';
+    display: block;
+    flex: 1;
+    height: 1px;
+    background-color: rgba(44, 62, 54, 0.15);
+  }
+}
+
+.location-places {
+  display: grid;
+  gap: v.$space-md;
+  grid-template-columns: 1fr;
+
+  @include m.from(small) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.place-card {
+  padding: v.$space-md;
+  background-color: var(--fog);
+  border-radius: v.$radius-md;
+  border: 1.5px solid transparent;
+  transition: border-color v.$transition-fast, box-shadow v.$transition-base;
+
+  &:hover {
+    border-color: var(--sage-light);
+    box-shadow: 0 4px 16px var(--shadow-color);
+  }
+}
+
+.place-card__name {
+  font-family: v.$font-display;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--pine);
+  margin-bottom: 0.35rem;
+}
+
+.place-card__blurb {
+  font-size: 0.9rem;
+  color: var(--pine-light);
+  line-height: 1.65;
+  margin-bottom: 0.6rem;
+}
+
+.place-card__distance {
+  @include m.label-text;
+  font-size: 0.65rem;
+  color: var(--sage);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  svg {
+    width: 0.8rem;
+    height: 0.8rem;
+    color: var(--amber);
+  }
+}
+
+// Getting here section
+.getting-here-list {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-md;
+}
+
+.getting-here-item {
+  display: grid;
+  gap: v.$space-sm;
+
+  @include m.from(medium) {
+    grid-template-columns: 11rem 1fr;
+    gap: v.$space-lg;
+    align-items: start;
+  }
+}
+
+.getting-here-item__mode {
+  @include m.label-text;
+  font-size: 0.72rem;
+  color: var(--pine);
+  padding: 0.5rem 0;
+  border-bottom: 1.5px solid var(--fog);
+
+  @include m.from(medium) {
+    border-bottom: none;
+    border-right: 1.5px solid var(--fog);
+    padding: 0 v.$space-md 0 0;
+  }
+}
+
+.getting-here-item__details {
+  font-size: 0.95rem;
+  color: var(--pine-light);
+  line-height: 1.7;
+  padding-block: 0.5rem;
+}
+
+// Map embed
+.map-embed {
+  position: relative;
+  border-radius: v.$radius-md;
+  overflow: hidden;
+  aspect-ratio: 16 / 8;
+  border: 1.5px solid var(--fog);
+
+  iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}

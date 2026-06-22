@@ -1,0 +1,99 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+// -------------------------------------------------------------
+// SectionHeading
+// -------------------------------------------------------------
+.section-heading {
+  margin-bottom: v.$space-xl;
+
+  &--center {
+    text-align: center;
+  }
+}
+
+.section-heading__eyebrow {
+  @include m.label-text;
+  color: var(--amber);
+  margin-bottom: 0.75rem;
+}
+
+.section-heading__title {
+  margin-bottom: v.$space-sm;
+}
+
+.section-heading__intro {
+  max-width: 54rem;
+  font-size: 1.05rem;
+  color: var(--pine-light);
+  line-height: 1.7;
+
+  .section--pine & {
+    color: var(--sage-light);
+  }
+}
+
+// Center-aligned intro text stays centered and narrower
+.section-heading--center .section-heading__intro {
+  margin-inline: auto;
+  max-width: 44rem;
+}
+
+// -------------------------------------------------------------
+// Generic card
+// -------------------------------------------------------------
+.card {
+  background-color: var(--cream);
+  border-radius: v.$radius-md;
+  padding: v.$space-lg;
+  border: 1.5px solid var(--fog);
+  transition: box-shadow v.$transition-base, transform v.$transition-fast;
+
+  &:hover {
+    box-shadow: 0 8px 28px var(--shadow-color);
+    transform: translateY(-3px);
+  }
+
+  @include m.reduced-motion {
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+.card--fog {
+  background-color: var(--fog);
+  border-color: transparent;
+}
+
+// -------------------------------------------------------------
+// Amenity / feature icon pill
+// -------------------------------------------------------------
+.amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.amenity-item__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background-color: var(--fog);
+  color: var(--pine);
+
+  svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .section--pine & {
+    background-color: rgba(247, 242, 233, 0.1);
+    color: var(--amber);
+  }
+}

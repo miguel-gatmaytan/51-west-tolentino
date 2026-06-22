@@ -1,0 +1,15 @@
+// Main stylesheet — imports all partials in order
+@use 'variables';
+@use 'mixins';
+@use 'base';
+@use 'buttons';
+@use 'ridge';
+@use 'navbar';
+@use 'footer';
+@use 'components';
+@use 'pages/home';
+@use 'pages/about';
+@use 'pages/stay';
+@use 'pages/location';
+@use 'pages/faq';
+@use 'pages/contact';

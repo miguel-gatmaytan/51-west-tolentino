@@ -1,0 +1,145 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.footer__divider {
+  background-color: var(--cream);
+  height: 70px;
+  line-height: 0;
+
+  @include m.from(medium) {
+    height: 110px;
+  }
+}
+
+.footer__main {
+  background-color: var(--pine);
+  color: var(--sage-light);
+  padding-top: v.$space-lg;
+}
+
+.footer__grid {
+  display: grid;
+  gap: v.$space-xl v.$space-lg;
+  grid-template-columns: 1fr;
+  padding-bottom: v.$space-xl;
+
+  @include m.from(medium) {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  }
+}
+
+.footer__brand {
+  max-width: 22rem;
+}
+
+.footer__name {
+  font-family: v.$font-display;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+
+.footer__tagline {
+  margin-bottom: v.$space-md;
+}
+
+.footer__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  @include m.label-text;
+  font-size: 0.72rem;
+  color: var(--cream);
+  border-bottom: 1.5px solid rgba(247, 242, 233, 0.3);
+  padding-bottom: 0.2rem;
+  transition: color v.$transition-fast, border-color v.$transition-fast;
+
+  &:hover {
+    color: var(--amber);
+    border-color: var(--amber);
+  }
+}
+
+.footer__social-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.footer__heading {
+  @include m.label-text;
+  color: var(--amber);
+  margin-bottom: v.$space-md;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+
+  a {
+    transition: color v.$transition-fast;
+
+    &:hover {
+      color: var(--cream);
+    }
+  }
+}
+
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  a {
+    transition: color v.$transition-fast;
+
+    &:hover {
+      color: var(--cream);
+    }
+  }
+}
+
+.footer__icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--amber);
+}
+
+.footer__hours {
+  color: var(--cream);
+  margin-bottom: v.$space-sm;
+}
+
+.footer__note {
+  font-size: 0.9rem;
+  margin-bottom: v.$space-md;
+}
+
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  border-top: 1px solid rgba(247, 242, 233, 0.12);
+  padding-block: v.$space-md;
+  font-size: 0.8rem;
+
+  @include m.from(medium) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.footer__credit {
+  @include m.label-text;
+  font-size: 0.65rem;
+  color: var(--sage-light);
+}

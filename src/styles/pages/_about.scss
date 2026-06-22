@@ -1,0 +1,77 @@
+@use '../variables' as v;
+@use '../mixins' as m;
+
+// About intro split
+.about-split {
+  display: grid;
+  gap: v.$space-xl;
+  align-items: center;
+
+  @include m.from(medium) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.about-split--reverse {
+  @include m.from(medium) {
+    .about-split__photo { order: -1; }
+  }
+}
+
+.about-split__text p + p {
+  margin-top: v.$space-sm;
+}
+
+.about-split__text p {
+  color: var(--pine-light);
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+// Team / highlights strip
+.highlights-grid {
+  display: grid;
+  gap: v.$space-md;
+  grid-template-columns: 1fr;
+
+  @include m.from(small) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.from(large) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.highlight-card {
+  padding: v.$space-lg v.$space-md;
+  background-color: var(--fog);
+  border-radius: v.$radius-md;
+  border: 1.5px solid transparent;
+  transition: border-color v.$transition-base;
+
+  &:hover {
+    border-color: var(--amber);
+  }
+}
+
+.highlight-card__icon {
+  width: 2.2rem;
+  height: 2.2rem;
+  color: var(--amber);
+  margin-bottom: v.$space-sm;
+}
+
+.highlight-card__title {
+  font-family: v.$font-display;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--pine);
+  margin-bottom: 0.4rem;
+}
+
+.highlight-card__body {
+  font-size: 0.9rem;
+  color: var(--pine-light);
+  line-height: 1.65;
+}
