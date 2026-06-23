@@ -4,6 +4,8 @@ import SectionHeading from '../components/SectionHeading.jsx';
 import RidgeDivider from '../components/RidgeDivider.jsx';
 import { Icon, ArrowIcon } from '../components/Icons.jsx';
 
+const imageBase = import.meta.env.BASE_URL;
+
 const highlights = [
   {
     icon: 'leaf',
@@ -111,7 +113,7 @@ export default function About() {
 
             <div className="about-split__photo" style={{ height: '360px' }}>
               <img
-                src="/lobby.jpg"
+                src={`${imageBase}lobby.jpg`}
                 alt="Photo — inn exterior / entrance"
                 style={{
                   width: '100%',
@@ -192,7 +194,7 @@ export default function About() {
 
             <div className="about-split__photo" style={{ height: '240px' }}>
               <img
-                src="/outdoor.jpg"
+                src={`${imageBase}outdoor.jpg`}
                 alt="Photo — Taal Lake / ridge view"
                 style={{
                   width: '100%',

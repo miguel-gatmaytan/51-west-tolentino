@@ -4,11 +4,13 @@ import RidgeDivider from '../components/RidgeDivider.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
 import { Icon, ArrowIcon, ChevronIcon } from '../components/Icons.jsx';
 
+const imageBase = import.meta.env.BASE_URL;
+
 export default function Home() {
   const roomImages = {
-    'Standard Double': '/single.jpg',
-    'Twin Room': '/double.jpg',
-    'Family Room': '/triple.jpg',
+    'Standard Double': `${imageBase}single.jpg`,
+    'Twin Room': `${imageBase}double.jpg`,
+    'Family Room': `${imageBase}triple.jpg`,
   };
 
   return (
@@ -115,7 +117,7 @@ export default function Home() {
                   style={{ height: '200px' }}
                 >
                   <img
-                    src={roomImages[room.name] || '/51-1/301.jpg'}
+                    src={roomImages[room.name] || `${imageBase}51-1/301.jpg`}
                     alt={`Photo — ${room.name}`}
                     style={{
                       width: '100%',

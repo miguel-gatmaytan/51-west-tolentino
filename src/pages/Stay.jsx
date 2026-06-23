@@ -4,6 +4,8 @@ import SectionHeading from '../components/SectionHeading.jsx';
 import RidgeDivider from '../components/RidgeDivider.jsx';
 import { Icon } from '../components/Icons.jsx';
 
+const imageBase = import.meta.env.BASE_URL;
+
 const policies = [
   {
     label: 'Check-in',
@@ -24,9 +26,9 @@ const policies = [
 
 export default function Stay() {
   const roomImages = {
-    'Standard Double': '/single.jpg',
-    'Twin Room': '/double.jpg',
-    'Family Room': '/triple.jpg',
+    'Standard Double': `${imageBase}single.jpg`,
+    'Twin Room': `${imageBase}double.jpg`,
+    'Family Room': `${imageBase}triple.jpg`,
   };
 
   return (
@@ -67,7 +69,7 @@ export default function Stay() {
               <div key={room.name} className="room-card">
                 <div className="room-card__photo" style={{ height: '220px' }}>
                   <img
-                    src={roomImages[room.name] || '/51-1/301.jpg'}
+                    src={roomImages[room.name] || `${imageBase}51-1/301.jpg`}
                     alt={`Photo — ${room.name}`}
                     style={{
                       width: '100%',
