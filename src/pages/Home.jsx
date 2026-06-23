@@ -6,9 +6,9 @@ import { Icon, ArrowIcon, ChevronIcon } from '../components/Icons.jsx';
 
 export default function Home() {
   const roomImages = {
-    'Standard Double': '/51-1/301.jpg',
-    'Twin Room': '/51-1/302%2002.jpg',
-    'Family Room': '/51-1/L2%2001%20Family.jpg',
+    'Standard Double': '/single.jpg',
+    'Twin Room': '/double.jpg',
+    'Family Room': '/triple.jpg',
   };
 
   return (
@@ -192,7 +192,7 @@ export default function Home() {
 
             <div className="location-teaser__photo" style={{ height: '260px' }}>
               <img
-                src="/51-1/08%20terrace.jpg"
+                src="https://primer.com.ph/travel/wp-content/uploads/sites/6/2017/11/peoples-park-Cavite-Provincial-Government.jpg"
                 alt="Photo — view towards Taal Lake"
                 style={{
                   width: '100%',

@@ -24,9 +24,9 @@ const policies = [
 
 export default function Stay() {
   const roomImages = {
-    'Standard Double': '/51-1/L2%2001%20Family.jpg',
-    'Twin Room': '/51-1/302%2002.jpg',
-    'Family Room': '/51-1/301.jpg',
+    'Standard Double': '/single.jpg',
+    'Twin Room': '/double.jpg',
+    'Family Room': '/triple.jpg',
   };
 
   return (

@@ -109,11 +109,16 @@ export default function About() {
               </div>
             </div>
 
-            <div className="about-split__photo" style={{height: '360px'}}>
+            <div className="about-split__photo" style={{ height: '360px' }}>
               <img
-                src="/51-1/05%20reception.jpg"
+                src="/lobby.jpg"
                 alt="Photo — inn exterior / entrance"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  borderRadius: 6,
+                }}
               />
             </div>
           </div>
@@ -185,11 +190,16 @@ export default function About() {
               </div>
             </div>
 
-            <div className="about-split__photo" style={{height: '240px'}}>
+            <div className="about-split__photo" style={{ height: '240px' }}>
               <img
-                src="/51-1/08%20terrace.jpg"
+                src="/outdoor.jpg"
                 alt="Photo — Taal Lake / ridge view"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  borderRadius: 6,
+                }}
               />
             </div>
           </div>
