@@ -4,7 +4,7 @@ import RidgeDivider from '../components/RidgeDivider.jsx';
 import SectionHeading from '../components/SectionHeading.jsx';
 import { Icon, ArrowIcon, ChevronIcon } from '../components/Icons.jsx';
 
-const imageBase = import.meta.env.BASE_URL;
+const imageBase = `${import.meta.env.BASE_URL}/`;
 
 export default function Home() {
   const roomImages = {

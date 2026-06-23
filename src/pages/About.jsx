@@ -4,8 +4,7 @@ import SectionHeading from '../components/SectionHeading.jsx';
 import RidgeDivider from '../components/RidgeDivider.jsx';
 import { Icon, ArrowIcon } from '../components/Icons.jsx';
 
-const imageBase = import.meta.env.BASE_URL;
-
+const imageBase = `${import.meta.env.BASE_URL}/`;
 const highlights = [
   {
     icon: 'leaf',
